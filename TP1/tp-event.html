@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>Manipulation de Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #monapp {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            width: 80px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        input {
+            padding: 5px;
+            margin-top: 10px;
+            width: 100%;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        label {
+            font-size: 12px;
+            color: red;
+        }
+
+
+        span {
+            font-size: 20px;
+            margin: 0 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="monapp">
+    <div>
+        <button @click="toggle">{{ titre }}</button>
+    </div>
+
+    <div>
+        <button @click="increment">+ +</button>
+        <span>{{counter}}</span>
+        <button @click="decrement">- -</button>
+    </div>
+
+
+    <div>
+        <input v-model="inp_value" @input="check">
+        <label v-if="problem" style="color: red">l'espace n'est pas autorisé</label>
+    </div>
+
+</div>
+
+<script>
+const appli = {
+    data() {
+        return {
+            cliqued: false,
+            titre: "Cliquez moi",
+            counter:0,
+            problem:false,
+            inp_value:"",
+        };
+    },
+    methods: {
+        toggle() {
+            this.cliqued = !this.cliqued;
+            this.titre = this.cliqued ? "Cliqué" : "Cliquez moi";
+            document.title = this.titre; // Modification du titre de la page
+        },
+        increment(){
+            this.counter ++
+        },
+        decrement(){
+          this.counter --
+        },
+        check(){
+            this.problem = this.inp_value.includes(" ");
+        }
+
+    },
+    computed: {
+
+
+    }
+};
+
+Vue.createApp(appli).mount("#monapp");
+</script>
+
+</body>
+</html>

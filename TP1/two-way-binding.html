@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Manipulation de vue</title>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<style>
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  #monapp {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+
+
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+
+  label {
+    font-size: 14px;
+    display: inline-block;
+    margin: 10px 0;
+  }
+
+
+  input[type="radio"], input[type="checkbox"] {
+    margin-right: 5px;
+  }
+
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+
+  button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+</style>
+</head>
+<body>
+
+<div id="monapp">
+  <p v-if="affiche" :style="{color:selectedColor}">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam pariatur mollitia et, inventore delectus. Doloribus laudantium maiores at necessitatibus distinctio?
+  </p>
+
+  <div class="form-group">
+    <label>Couleur de la police</label><br>
+    <label>Rouge</label><input type="radio" name="couleur" value="red" v-model="selectedColor">
+    <label>Bleu</label><input type="radio" name="couleur" value="blue" v-model="selectedColor">
+  </div>
+
+  <div class="form-group">
+    <label>Afficher/cacher le paragraphe ?</label>
+    <input type="checkbox" value="none" v-model="affiche">
+  </div>
+
+</div>
+
+<script>
+	const appli = {
+		data () {
+			return {
+				selectedColor: "black",
+                affiche: true
+			}
+		}
+	};
+
+Vue.createApp(appli).mount("#monapp");
+</script>
+
+</body>
+</html>
